@@ -2,9 +2,12 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule }  from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import 'hammerjs';
 
-import { VehicleService } from './vehicle.service';
+import { VehicleService } from './services/vehicle.service';
+import { IsolistService } from './services/isoList.service';
+import { FilterService } from './services/filter.service';
 
 
 // Imports for loading & configuring the in-memory web api
@@ -20,22 +23,22 @@ import {MatButtonModule,MatSidenavModule,MatMenuModule,
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SelectComponent } from './select/select.component';
-import { ViewComponent } from './view/view.component';
-import { TableComponent } from './table/table.component';
 import { NavbarComponent } from './home-screen/navbar/navbar.component';
-import { SelectionScreenComponent } from './home-screen/selection-screen/selection-screen.component';
+import { SelectionMenuComponent } from './home-screen/selectionmenu/selectionmenu.component';
+import { FilterComponent } from './home-screen/filtercomponent/filter/filter.component';
+import { DisplayComponent } from './home-screen/displaycomponent/display/display.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectionScreenComponent,
-    SelectComponent,
-    ViewComponent,
-    TableComponent,
+    SelectionMenuComponent,
     NavbarComponent,
-    SelectionScreenComponent,
+    FilterComponent,
+    DisplayComponent,
+    
+    
   
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -54,10 +57,11 @@ import { SelectionScreenComponent } from './home-screen/selection-screen/selecti
     MatSelectModule,
     MatListModule,
     MatButtonToggleModule,
-    MatTableModule
+    MatTableModule,
+    FlexLayoutModule
   ],
   exports: [],
-  providers: [VehicleService],
+  providers: [ IsolistService, FilterService, VehicleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

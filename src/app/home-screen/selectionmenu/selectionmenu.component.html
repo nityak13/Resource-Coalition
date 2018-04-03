@@ -1,0 +1,90 @@
+<div class="box-container" fxLayout="column">
+<div class="container" fxLayout="row" >
+  <div fxFlex>
+<mat-select  [(ngModel)]="selected" placeholder="TSO" (change)="filterResources(selected)" >
+  <mat-option *ngFor= "let iso of isoList" [value]="iso"> {{iso}} </mat-option>
+  <mat-option value="All" (change)="allResources()"> All </mat-option>
+</mat-select>
+</div>
+
+<div fxFlex>
+<mat-select [(ngModel)]="selected" (ngModelChange)="filterResources(selected)" placeholder="Status" >
+  <mat-option *ngFor= "let status of statusList" [value]="status"> {{status}} </mat-option>
+  <mat-option  value="All"> All  </mat-option>
+</mat-select>
+</div>
+<div fxFlex>
+    <mat-select [disabled] placeholder="Market" >
+      <mat-option *ngFor= "let status of statusList" [value]="status"> {{status}} </mat-option>
+      <mat-option  value="All"> All  </mat-option>
+    </mat-select>
+    </div>
+</div>
+
+
+<div class="container" fxLayout="row" >
+  <div fxFlex>
+    <button mat-button (click)="onSelectView()">Array</button>
+  </div>
+<div fxFlex>
+  <button mat-button (click)="onSelectView()">Map</button>
+</div>
+<div fxFlex>
+ <button mat-button (click)="onSelectView()">List</button>
+</div>
+</div>
+<div class="container" fxLayout="row" >
+  <div fxFlex>
+   <button mat-button>Status</button>
+  </div>
+  <div fxFlex>
+   <button mat-button>Power</button>
+  </div>
+  <div fxFlex>
+   <button mat-button>SOC%</button>
+  </div>
+  <div fxFlex>
+   <button mat-button>SOC</button>
+  </div>
+</div>
+<div class="container" fxLayout="row">
+  <button mat-button>Display</button>
+</div>
+<app-display></app-display>
+</div>
+
+<filter-component #filter [selected]="selected" [isoList]="isoList" [statusList]="statusList"></filter-component>
+<!-- <div *ngIf="filteredResources">
+<ul *ngFor="let res of filteredResources">
+  <li>{{res.iso_id}}</li>
+  <li>{{res.primary_status}}</li>
+</ul>
+</div> -->
+
+<!-- <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="15%">Item 1</div>
+  <div class="item item-2" fxFlex="20%" fxFlexOrder="3">Item 2</div>
+  <div class="item item-3" fxFlex>Item 3</div>
+</div>
+
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div class="item item-4" fxFlex fxFlexOffset="50px"  fxFlexOffset.xs="0">Item 4</div>
+  <div class="item item-5" fxFlex="200px">Item 5</div>
+</div> -->
+
+<!-- <div *ngIf="filteredResources2">
+  <ul *ngFor="let res of filteredResources2">
+    <li>{{res.iso_id}}</li>
+    <li>{{res.primary_status}}</li>
+  </ul>
+  </div> -->
+
+  <div class="count-info" *ngIf="filterFlag" >
+    <div class="ui-iso-resources" *ngIf="filterFlag">
+        <div  *ngFor="let resource of filteredResources;" class="ui-iso-resource" (click)="resourceDidClick(resource)" 
+         [ngClass]="{'ui-status-not-connected': resource.primary_status==='NC',
+            'ui-status-sleeping': resource.primary_status==='SLP',
+            'ui-status-inactive': resource.primary_status==='IA',
+            'ui-status-available': resource.primary_status==='GI',
+            'selected-resource': resource === selectedResource}">
+        </div>

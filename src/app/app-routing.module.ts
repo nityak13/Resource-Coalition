@@ -1,14 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SelectionScreenComponent } from './home-screen/selection-screen/selection-screen.component';
-import { SelectComponent } from './select/select.component';
-import { ViewComponent } from './view/view.component';
-import { TableComponent } from './table/table.component';
+import { SelectionMenuComponent } from './home-screen/selectionmenu/selectionmenu.component';
+
 
 
 
 const routes: Routes = [
-    {path: '', component:SelectionScreenComponent
+    {path: '', component:SelectionMenuComponent
   // ,children:[
   // //   {path:'Select' , component:SelectComponent,},
   // //   {path: 'Map', component:TableComponent},

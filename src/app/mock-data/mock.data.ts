@@ -1853,8 +1853,29 @@ export class MockData implements InMemoryDbService, InMemoryBackendConfig {
                 vin: "dumb-ev:M00031",
                 volts: "246.3"
             }
-        ]
+        ];
+        let iso_list: String[] =
+        [
+                "CalISO",
+                "Charge Only",
+                "CLP",
+                "EDF",
+                "Energinet.Dk",
+                "National Grid",
+                "Not in ISO Market",
+                "PJM",
+                "Test",
+                "UCSD"
+        ];
 
-        return { carLogs: carLogs };
-    }
+    return { carLogs: carLogs, iso_list: iso_list };
+    };
+
+    
+          
+ 
+
+    
+    
+
 }
