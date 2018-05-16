@@ -11,6 +11,8 @@ export class FilterService {
   resourcesToShow: Array<any>;
   filteredResources: Array<IVehicle>;
   filteredResources2: Array<IVehicle>;
+  f1;
+  f2;
 
   constructor(private vehicleservice: VehicleService) { 
     this.resources = [];
@@ -24,7 +26,7 @@ export class FilterService {
  
   setFilteredData(data:Array<IVehicle>){
     this.filteredResources= data;
-    console.log(this.filteredResources);
+    
   }
   
   getFilteredData2(){

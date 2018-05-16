@@ -1,0 +1,16 @@
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let res of filteredResources">
+          <td>{{ res.iso_id }}</td>
+          <td>{{ res.primary_status }}</td>
+          <td>{{ res.soc }}</td>
+        </tr>
+      </tbody>
+</table>

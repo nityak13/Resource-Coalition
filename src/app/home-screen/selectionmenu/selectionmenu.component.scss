@@ -1,53 +1,170 @@
-.box-container{
-    margin:auto;
-    border: black solid;   
-    width: 500px;
-}
-.container{
-    margin: auto;  
-   // float: center;
-   // justify-content: center;
-    overflow: hidden;
- // position: absolute;
+::ng-deep.mat-toolbar{
+    background-color: #135499;
+    color:white;
+    height:3em;
+  }
   
-     display: flex;
-  justify-content: center; /*centers items on the line (the x-axis by default)*/
- align-items: center; /*centers items on the cross-axis (y by default)*/
-  left: 30%;  
-}
+  .mat-card{
+    background-color: whitesmoke;
+    
+  }
+  .container{
+  display: flex;
+  flex-direction:column;
+  min-height: 100%;
+    width: 100%;
+  }
+  .inner-container{
+    display: flex;
+  
+  }
+  .widgets{
+    font-size:10px;
+    height:5em;
+  }
+  
+  ::ng-deep.mat-select{
+    color: pink;
+    border: 1px solid lightgray;
+    margin:5px 0px 11px 2px;
+    padding:10px 2px 0px 2px !important;
+    border-radius: 3px;
+    margin-bottom:1.5%;
+    margin-top:3%;
+  }
+  ::ng-deep.mat-select-arrow{
+  margin: 0 15px !important;
+  }
+  
+  ::ng-deep.mat-select-placeholder{
+    color:black;
+    padding: 20%;
+  
+  }
+  ::ng-deep.mat-button{
+    border:1px solid lightgray !important;
+    margin:2px 2px 5px 2px !important ;
+    padding: 2px 0px 25px 2px !important;
+    color:black !important;
+    border-radius: 3px !important;
+  }
+  ::ng-deep.mat-expansion-panel-header{
+    font-weight: 400px;
+    font-size: 20px;
+    justify-content: center;
+    
+  }
+  
+  .display-container{
+    height:42em;
+  }
+  
+  .ui-array-resources {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: white;
+  }
+  
 
-// .container > div {
-//     margin: 10px;
+// .selection-menu-body{
+//     margin:50px;
+//    // padding:30px;
+// }
+// .view > .mat-button{
+//     background-color: white;   
+//      margin:10px;
+//      color:	#303030;
+//      font-weight: bold;
 // }
 
-.container > div > .mat-select{
-    height: 30px;
-    width: 80px;
-}
-.ui-iso-resources {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    border: 1px dashed lightgray;
-    padding: 10px;
-    padding-top:50px;
+// .color > .mat-button{
+//     background-color: white;   
+//      margin:10px;
+//      color:	#303030;
+//      font-weight: bold;
+// }
+// span.mat-select-placeholder {
+//      color: black;
+// }
+// ::mat-select-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+//     color: red;
+//     opacity: 1; /* Firefox */
+// }
+// span.mat-select-placeholder.ng-tns-c8-3.ng-star-inserted{
+//     color:#303030;
+// }
+// span > .mat-selectspan > .mat-select-trigger > .mat-select-value > span >.mat-select-placeholder {
+//     color: black;
+// }
+// span > .mat-select-placeholder{color:#303030}
+// .mat-expansion-panel {
+//     background:	#F5F5F5;
+// }
+//  .mat-expansion-panel-body {
+//     padding: 0 24px 16px;
+//     background-color:#F5F5F5;
+// }
+// .mat-expansion-panel-header{
+//     font-weight: 500;
+//     font-size: 20px;
+//     background-color: #135499
+// }
+// .mat-expansion-panel-header-title {
+//     color: white;
+// }
+// .mat-expansion-panel-header > .mat-expansion-panel-title{
+//     color: white;
+//     background-color: #135499;
+// }
+
+// .mat-expansion-panel-header[_ngcontent-c5] {
+//     font-weight: 500;
+//     font-size: 20px;
+//     background-color: #135499;
+// }
+// .mat-expansion-panel-header[_ngcontent-c5][_ngcontent-c5] {
+//     font-weight: 500;
+//     font-size: 20px;
+//     background-color: #135499;
+//     color: white;
+// }
+// .box-container{
+//     margin: auto;
+//     //box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+//     width: auto;
+    
+//     //color: white;
+//     border-radius: 3px;
+// }
+// .container-select{
+//     display: flex;
+//     justify-content: space-between;
+//     margin: 0 auto;
+//     padding: 20px 0 0 50px;
+//       margin: auto; 
+// }
+// .container-select > span {
+//     width: 145px;
+//     height: 50px;
+//     padding: 10px 50px 10px 10px;
+// }
+// .container-select > span > .mat-select {
+//     font-weight: bold;
+//     color:	#303030;
+    
+// }
+// .container{
+//     display: flex;
+//   justify-content: space-between;
+//  // max-width: 400px;
+//   margin: 0 auto;
+//   padding: 10px 0;
+//     margin: auto;  
    
-    .ui-iso-resource {
-        width: 30px;
-        height: 30px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        margin: 1px;
-        border-radius: 3px;
-        &.selected-resource {box-shadow: inset 1px 2px 10px rgba(0, 0, 0, 0.5);}
-        &:hover {
-            transform: scale(1.5);
-            border: 1px solid white;
-            box-sizing: border-box;
-            box-shadow: none;
-                }
-        &.ui-status-not-connected {background-color: #EF5350;}
-        &.ui-status-available {background-color: #66BB6A;}
-        &.ui-status-sleeping {background-color: #FFCA28;}
-        &.ui-status-inactive {background-color: #D3D3D3;}  
-    }
-}
+//     overflow: hidden;
+  
+// }
+
+
+

@@ -1,0 +1,245 @@
+<div array-body>
+    <mat-card class="ui-array-resources" >
+        <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)"    
+        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+        [ngClass]="{'ui-status-not-connected': resource.primary_status==='NC',
+        'ui-status-sleeping': resource.primary_status==='SLP',
+        'ui-status-inactive': resource.primary_status==='IA',
+        'ui-status-available': resource.primary_status==='GI',
+        'selected-resource': resource === selectedResource}" >
+        </div>
+    </mat-card>
+</div>
+
+<div array-body>
+<div *ngIf="filteredResources">
+  <div *ngIf="selectedView==='Array'">
+      <div *ngIf="selectedColor==='Status'">
+              
+              
+              <mat-card class="ui-array-resources" >
+                  <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)"    
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'ui-status-not-connected': resource.primary_status==='NC',
+                  'ui-status-sleeping': resource.primary_status==='SLP',
+                  'ui-status-inactive': resource.primary_status==='IA',
+                  'ui-status-available': resource.primary_status==='GI',
+                  'selected-resource': resource === selectedResource}" >
+                  </div>
+              </mat-card>
+              
+              
+                  <mat-card *ngIf="selectedResource" [ngClass]="{'ui-status-available': selectedResource.primary_status==='GI', 
+'ui-status-not-connected': selectedResource.primary_status==='NC', 'ui-status-sleeping': selectedResource.primary_status==='SLP',
+'ui-status-inactive':selectedResource.primary_status==='IA'}">
+  <mat-card-header>
+      <mat-card-title>{{selectedResource.car_name}}</mat-card-title>
+      <mat-card-subtitle>{{selectedResource.evse_name}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <div class="ui-row">
+          <div class="ui-column">
+              <div>ISO</div>
+              <div>{{selectedResource.iso_id}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Power Capacity Up</div>
+              <div>{{selectedResource.power_capacity_up}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Power Capacity Down</div>
+              <div>{{selectedResource.power_capacity_down}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Volts</div>
+              <div>{{selectedResource.volts}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Status</div>
+              <div>{{selectedResource.primary_status}}</div>
+          </div>
+      </div>
+  </mat-card-content>
+</mat-card>
+
+
+              </div>
+      
+      <div *ngIf="selectedColor==='Power'">
+              <div class="ui-array-resources">
+                  <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'c0' : (resource.power_flow >= -100 && resource.power_flow <=-90), 
+                  'c1' : (resource.power_flow > -90 && resource.power_flow <= -80), 'c2' : (resource.power_flow > -80 && resource.power_flow <=-70), 'c3' : (resource.power_flow > -70 && resource.power_flow <= -60), 
+                  'c4' : (resource.power_flow > -60 && resource.power_flow<= -50), 'c5' : (resource.power_flow >-50 && resource.power_flow <= -40), 'c6' : (resource.power_flow > -40 && resource.power_flow<= -30), 
+                  'c7' : (resource.power_flow > -30 && resource.power_flow <= -20), 'c8' : (resource.power_flow >-20 && resource.power_flow <=-10),'c9' : (resource.power_flow >-10 && resource.power_flow <=0),
+                  'c10' : (resource.power_flow >0 && resource.power_flow <= 10),'c11' : (resource.power_flow >10 && resource.power_flow <= 20), 'c12' : (resource.power_flow > 20 && resource.power_flow <= 30), 
+                  'c13' : (resource.power_flow > 30 && resource.power_flow <=40),'c14' : (resource.power_flow >40 && resource.power_flow <=50), 'c15' : (resource.power_flow >50 && resource.power_flow <=60),
+                  'c16' : (resource.power_flow >60 && resource.power_flow <= 70), 'c17' : (resource.power_flow >70 && resource.power_flow <=80),'c18' : (resource.power_flow > 80 && resource.power_flow <= 90), 
+                  'c19' : (resource.power_flow > 90 && resource.power_flow <= 100),'selected-resource': resource === selectedResource}">
+                  </div>
+              </div>
+      </div>
+      <div *ngIf="selectedColor==='SOC'">
+              <div class="ui-array-resources">
+                  <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'c0' : (resource.soc_kwh >= -100 && resource.soc_kwh <=-90), 
+                  'c1' : (resource.soc_kwh > -90 && resource.soc_kwh <= -80), 'c2' : (resource.soc_kwh > -80 && resource.soc_kwh <=-70), 'c3' : (resource.soc_kwh > -70 && resource.soc_kwh <= -60), 
+                  'c4' : (resource.soc_kwh > -60 && resource.soc_kwh<= -50), 'c5' : (resource.soc_kwh >-50 && resource.soc_kwh <= -40), 'c6' : (resource.soc_kwh > -40 && resource.soc_kwh<= -30), 
+                  'c7' : (resource.soc_kwh > -30 && resource.soc_kwh <= -20), 'c8' : (resource.soc_kwh >-20 && resource.soc_kwh <=-10),'c9' : (resource.soc_kwh >-10 && resource.soc_kwh <=0),
+                  'c10' : (resource.soc_kwh >0 && resource.soc_kwh <= 10),'c11' : (resource.soc_kwh >10 && resource.soc_kwh <= 20), 'c12' : (resource.soc_kwh > 20 && resource.soc_kwh <= 30), 
+                  'c13' : (resource.soc_kwh > 30 && resource.soc_kwh <=40),'c14' : (resource.soc_kwh >40 && resource.soc_kwh <=50), 'c15' : (resource.soc_kwh >50 && resource.soc_kwh <=60),
+                  'c16' : (resource.soc_kwh >60 && resource.soc_kwh <= 70), 'c17' : (resource.soc_kwh >70 && resource.soc_kwh <=80),'c18' : (resource.soc_kwh > 80 && resource.soc_kwh <= 90), 
+                  'c19' : (resource.soc_kwh > 90 && resource.soc_kwh <= 100),'selected-resource': resource === selectedResource}">
+                  </div>
+              </div>
+      </div>
+      <div *ngIf="selectedColor==='%SOC'">
+              <div class="ui-array-resources">
+                  <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'c0' : resource.soc <= 5, 'c1' : (resource.soc > 5 && resource.soc <= 10), 'c2' : (resource.soc > 10 && resource.soc <= 15), 'c3' : (resource.soc > 15 && resource.soc <= 20), 
+                  'c4' : (resource.soc > 20 && resource.soc<= 25), 'c5' : (resource.soc > 25 && resource.soc <= 30), 'c6' : (resource.soc > 30 && resource.soc<= 35), 'c7' : (resource.soc > 35 && resource.soc <= 40), 
+                  'c8' : (resource.soc > 40 && resource.soc <= 45), 'c9' : (resource.soc > 45 && resource.soc <= 50), 'c10' : (resource.soc > 50 && resource.soc <= 55), 'c11' : (resource.soc > 55 && resource.soc <= 60), 
+                  'c12' : (resource.soc > 60 && resource.soc <= 65), 'c13' : (resource.soc > 65 && resource.soc <= 70), 'c14' : (resource.soc > 70 && resource.soc <= 75), 'c15' : (resource.soc > 75 && resource.soc <= 80), 
+                  'c16' : (resource.soc > 80 && resource.soc <= 85), 'c17' : (resource.soc > 85 && resource.soc <= 90), 'c18' : (resource.soc > 90 && resource.soc <= 95), 'c19' : (resource.soc > 95 && resource.soc <= 100),
+                  'selected-resource': resource === selectedResource}">
+                  </div>
+              </div>
+      </div>
+  </div>
+
+</div>
+
+         
+
+<div *ngIf="selectedView==='Map'">
+      
+<p>Map View</p>
+
+</div>     
+
+<div *ngIf="selectedView==='List'">
+      
+<p>List View</p>
+
+</div>
+
+
+<div *ngIf="filteredResources2">
+  <div *ngIf="selectedView==='Array'">
+      <div *ngIf="selectedColor==='Status'">
+              <div class="ui-array-resources">
+                  <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'ui-status-not-connected': resource.primary_status==='NC',
+                  'ui-status-sleeping': resource.primary_status==='SLP',
+                  'ui-status-inactive': resource.primary_status==='IA',
+                  'ui-status-available': resource.primary_status==='GI',
+                  'selected-resource': resource === selectedResource}">
+                  </div>
+               </div>
+      </div>
+
+                  <mat-card *ngIf="selectedResource" [ngClass]="{'ui-status-available': selectedResource.primary_status==='GI', 
+'ui-status-not-connected': selectedResource.primary_status==='NC', 'ui-status-sleeping': selectedResource.primary_status==='SLP',
+'ui-status-inactive':selectedResource.primary_status==='IA'}">
+  <mat-card-header>
+      <mat-card-title>{{selectedResource.car_name}}</mat-card-title>
+      <mat-card-subtitle>{{selectedResource.evse_name}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <div class="ui-row">
+          <div class="ui-column">
+              <div>ISO</div>
+              <div>{{selectedResource.iso_id}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Power Capacity Up</div>
+              <div>{{selectedResource.power_capacity_up}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Power Capacity Down</div>
+              <div>{{selectedResource.power_capacity_down}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Volts</div>
+              <div>{{selectedResource.volts}}</div>
+          </div>
+          <div class="ui-column">
+              <div>Status</div>
+              <div>{{selectedResource.primary_status}}</div>
+          </div>
+      </div>
+  </mat-card-content>
+</mat-card>
+
+      
+      <div *ngIf="selectedColor==='Power'">
+              <div class="ui-array-resources">
+                  <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'c0' : (resource.power_flow >= -100 && resource.power_flow <=-90), 
+                  'c1' : (resource.power_flow > -90 && resource.power_flow <= -80), 'c2' : (resource.power_flow > -80 && resource.power_flow <=-70), 'c3' : (resource.power_flow > -70 && resource.power_flow <= -60), 
+                  'c4' : (resource.power_flow > -60 && resource.power_flow<= -50), 'c5' : (resource.power_flow >-50 && resource.power_flow <= -40), 'c6' : (resource.power_flow > -40 && resource.power_flow<= -30), 
+                  'c7' : (resource.power_flow > -30 && resource.power_flow <= -20), 'c8' : (resource.power_flow >-20 && resource.power_flow <=-10),'c9' : (resource.power_flow >-10 && resource.power_flow <=0),
+                  'c10' : (resource.power_flow >0 && resource.power_flow <= 10),'c11' : (resource.power_flow >10 && resource.power_flow <= 20), 'c12' : (resource.power_flow > 20 && resource.power_flow <= 30), 
+                  'c13' : (resource.power_flow > 30 && resource.power_flow <=40),'c14' : (resource.power_flow >40 && resource.power_flow <=50), 'c15' : (resource.power_flow >50 && resource.power_flow <=60),
+                  'c16' : (resource.power_flow >60 && resource.power_flow <= 70), 'c17' : (resource.power_flow >70 && resource.power_flow <=80),'c18' : (resource.power_flow > 80 && resource.power_flow <= 90), 
+                  'c19' : (resource.power_flow > 90 && resource.power_flow <= 100),'selected-resource': resource === selectedResource}">
+                  </div>
+              </div>
+      </div>
+      <div *ngIf="selectedColor==='SOC'">
+              <div class="ui-array-resources">
+                  <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'c0' : (resource.soc_kwh >= -100 && resource.soc_kwh <=-90), 
+                  'c1' : (resource.soc_kwh > -90 && resource.soc_kwh <= -80), 'c2' : (resource.soc_kwh > -80 && resource.soc_kwh <=-70), 'c3' : (resource.soc_kwh > -70 && resource.soc_kwh <= -60), 
+                  'c4' : (resource.soc_kwh > -60 && resource.soc_kwh<= -50), 'c5' : (resource.soc_kwh >-50 && resource.soc_kwh <= -40), 'c6' : (resource.soc_kwh > -40 && resource.soc_kwh<= -30), 
+                  'c7' : (resource.soc_kwh > -30 && resource.soc_kwh <= -20), 'c8' : (resource.soc_kwh >-20 && resource.soc_kwh <=-10),'c9' : (resource.soc_kwh >-10 && resource.soc_kwh <=0),
+                  'c10' : (resource.soc_kwh >0 && resource.soc_kwh <= 10),'c11' : (resource.soc_kwh >10 && resource.soc_kwh <= 20), 'c12' : (resource.soc_kwh > 20 && resource.soc_kwh <= 30), 
+                  'c13' : (resource.soc_kwh > 30 && resource.soc_kwh <=40),'c14' : (resource.soc_kwh >40 && resource.soc_kwh <=50), 'c15' : (resource.soc_kwh >50 && resource.soc_kwh <=60),
+                  'c16' : (resource.soc_kwh >60 && resource.soc_kwh <= 70), 'c17' : (resource.soc_kwh >70 && resource.soc_kwh <=80),'c18' : (resource.soc_kwh > 80 && resource.soc_kwh <= 90), 
+                  'c19' : (resource.soc_kwh > 90 && resource.soc_kwh <= 100),'selected-resource': resource === selectedResource}">
+                  </div>
+              </div>
+      </div>
+      <div *ngIf="selectedColor==='%SOC'">
+              <div class="ui-array-resources">
+                  <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                  [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                  [ngClass]="{'c0' : resource.soc <= 5, 'c1' : (resource.soc > 5 && resource.soc <= 10), 'c2' : (resource.soc > 10 && resource.soc <= 15), 'c3' : (resource.soc > 15 && resource.soc <= 20), 
+                  'c4' : (resource.soc > 20 && resource.soc<= 25), 'c5' : (resource.soc > 25 && resource.soc <= 30), 'c6' : (resource.soc > 30 && resource.soc<= 35), 'c7' : (resource.soc > 35 && resource.soc <= 40), 
+                  'c8' : (resource.soc > 40 && resource.soc <= 45), 'c9' : (resource.soc > 45 && resource.soc <= 50), 'c10' : (resource.soc > 50 && resource.soc <= 55), 'c11' : (resource.soc > 55 && resource.soc <= 60), 
+                  'c12' : (resource.soc > 60 && resource.soc <= 65), 'c13' : (resource.soc > 65 && resource.soc <= 70), 'c14' : (resource.soc > 70 && resource.soc <= 75), 'c15' : (resource.soc > 75 && resource.soc <= 80), 
+                  'c16' : (resource.soc > 80 && resource.soc <= 85), 'c17' : (resource.soc > 85 && resource.soc <= 90), 'c18' : (resource.soc > 90 && resource.soc <= 95), 'c19' : (resource.soc > 95 && resource.soc <= 100),
+                  'selected-resource': resource === selectedResource}">
+                  </div>
+              </div>
+      </div>
+  
+  
+</div>
+</div>
+
+
+  
+
+
+         
+
+<div *ngIf="selectedView==='Map'">
+      
+<p>Map View</p>
+
+</div>     
+
+<div *ngIf="selectedView==='List'">
+      
+<p>List View</p>
+
+</div>
+
+</div>

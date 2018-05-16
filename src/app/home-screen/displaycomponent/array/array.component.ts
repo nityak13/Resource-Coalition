@@ -2,26 +2,20 @@ import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewInit } from '@an
 import { FilterService } from './../../../services/filter.service'
 import { SelectionMenuComponent } from './../../../home-screen/selectionmenu/selectionmenu.component'
 import { IVehicle } from './../../../vehicle'
-import { ArrayComponent } from './../array/array.component';
-import { ListComponent } from './../list/list.component';
-import { MapComponent } from './../map/map.component';
-//import * as $ from 'jquery'
-
 
 @Component({
-  selector: 'display-component',
-  templateUrl: './display.component.html',
-  styleUrls: ['./display.component.scss']
+  selector: 'app-array',
+  templateUrl: './array.component.html',
+  styleUrls: ['./array.component.scss']
 })
-export class DisplayComponent implements OnInit {
+export class ArrayComponent implements OnInit {
 
-   filteredResources: Array<any>;
+  filteredResources: Array<any>;
    filteredResources2:Array<any>;
    resources:Array<any>;
    selectedResource:IVehicle;
    width=10;
    height=10;
-   flagView;
    f1;
    f2;
 
