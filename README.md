@@ -1,6 +1,7 @@
 The dependencies that need to be installed are-
 angular-cli 
 angular material
+angular flex layout
 
 To run:
 ng serve
