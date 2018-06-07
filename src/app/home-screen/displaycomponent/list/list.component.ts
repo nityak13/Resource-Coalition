@@ -2,6 +2,7 @@ import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewInit } from '@an
 import { FilterService } from './../../../services/filter.service'
 import { SelectionMenuComponent } from './../../../home-screen/selectionmenu/selectionmenu.component'
 import { IVehicle } from './../../../vehicle'
+import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 
 @Component({
   selector: 'app-list',
@@ -11,6 +12,7 @@ import { IVehicle } from './../../../vehicle'
 export class ListComponent implements OnInit {
 
   filteredResources: Array<any>;
+  dataSource;
   filteredResources2:Array<any>;
   resources:Array<any>;
   selectedResource:IVehicle;
@@ -21,24 +23,37 @@ export class ListComponent implements OnInit {
 
  selectedView;
  selectedColor;
- dtOptions;
+ displayedColumns=["car_name","vin","iso_id","primary_status","energy_charge","soc","soc_kwh","volts"];
 
 
  constructor(private filterService:FilterService) {
    //this.doResize(null, this.starterData);
    this.filteredResources=[];
    this.filteredResources2=[];
+   
   }
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
  ngOnInit() {
-  this.dtOptions= this.filteredResources
- 
+  this.filteredResources=this.filterService.getFilteredData();
+  this.filteredResources2=this.filterService.getFilteredData2();
+  this.dataSource = new MatTableDataSource<IVehicle>(this.filteredResources)
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
 
   }
   ngAfterViewInit(){
-   
+    
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   ngDoCheck(){
+  this.dataSource = new MatTableDataSource<IVehicle>(this.filteredResources)
    this.filteredResources=this.filterService.getFilteredData();
    this.filteredResources2=this.filterService.getFilteredData2();
    if(this.filteredResources){

@@ -15,17 +15,22 @@
       <div fxLayoutAlign="center">
       <div class="container" fxFlex="30%" fxLayout="column" fxLayout.xs="column" fxLayout.sm="column"
        fxLayoutGap="0.5%" fxLayoutAlign="space-between">
+       <button mat-button class="clear" (click)="clearSelection()" fxflex >Clear </button> 
         <div class="inner-container" fxFlex fxLayoutAlign="center" fxLayout="row"
          fxLayout.xs="column" fxLayout.sm="row"
 				 fxLayoutGap="0.5%">
           <mat-select placeholder="TSO" [(ngModel)]="selected" placeholder="TSO"
             (change)="filterResources(selected)" fxFlex>
 						<mat-option *ngFor= "let iso of isoList" [value]="iso" fxFlex> {{iso}} </mat-option>
-            <mat-option value="All" (change)="filterResources(selected)" fxFlex> All </mat-option>
+            <mat-option value="AllTSO" (change)="filterResources(selected)" fxFlex> All </mat-option>
 					</mat-select>
           <mat-select placeholder="Status"  [(ngModel)]="selected" (change)="filterResources(selected)"  fxFlex>
-            <mat-option *ngFor= "let status of statusList" [value]="status" fxFlex> {{status}} </mat-option>
-            <mat-option value="All" (change)="filterResources(selected)" fxFlex> All </mat-option>
+              <!-- <mat-option  value="NC">  Not Connected </mat-option>
+              <mat-option  value="GI"> Active  </mat-option>
+              <mat-option  value="SLP">  Sleeping </mat-option>
+              <mat-option  value="IA"> Inactive  </mat-option>
+             -->
+             <mat-option *ngFor= "let status of statusList" [value]="status" fxFlex> {{status}} </mat-option>
 					</mat-select>
 					<mat-select placeholder="Market" fxFlex>
 						
@@ -34,14 +39,14 @@
         
 				<div fxFlex="30%" class="inner-container" fxLayoutAlign="center" fxLayout="row" fxLayout.xs="column" fxLayout.sm="row"
 				 fxLayoutGap="0.5%">
-          <button mat-button  *ngFor= "let view of viewName;" [value]="selectedView"
+          <button mat-button  *ngFor= "let view of viewName;" [value]="selectedView" [ngClass]="{'selected-item' :view === selectedView}"
            (click)="onSelectView(view)" fxFlex> {{view}} </button>
 					
 				</div>
         
         <div fxFlex="30%" class="inner-container" fxLayoutAlign="center" fxLayout="row" fxLayout.xs="column" fxLayout.sm="row"
 				 fxLayoutGap="0.5%">
-         <button mat-button *ngFor= "let color of colorName;" [value]="color" 
+         <button mat-button *ngFor= "let color of colorName;" [value]="selectedColor" [ngClass]="{'selected-item' :color === selectedColor}"
          (click)="onSelectColor(color)" fxFlex> {{color}}
          </button>
 				</div>
@@ -57,128 +62,11 @@
 
   <display-component
   [selectedView]="selectedView"
-  [selectedColor]="selectedColor">
+  [selectedColor]="selectedColor"
+  [clearDisplay]="clearDisplay">
   </display-component> 
 
-
-<!-- <div class="selection-menu-body">
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Selection Menu
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-<div class="box-container" fxLayout="column">
-<div class="container-select" fxLayout="row" >
-  <span fxFlex>
-<mat-select  [(ngModel)]="selected" placeholder="TSO"  (change)="filterResources(selected)">
-  <mat-option *ngFor= "let iso of isoList" [value]="iso" > {{iso}} </mat-option>
-  <mat-option value="All" (change)="filterResources(selected)"> All </mat-option>
-</mat-select>
-</span>
-
-<span fxFlex>
-<mat-select [(ngModel)]="selected" (change)="filterResources(selected)" placeholder="Status" >
-  <mat-option *ngFor= "let status of statusList" [value]="status"> {{status}} </mat-option>
-  <mat-option value="All" (change)="filterResources(selected)"> All </mat-option>
-  
-</mat-select>
-</span>
-<span fxFlex>
-    <mat-select [disabled] placeholder="Market" >
-      
-    </mat-select>
-  </span>
-</div>
-
-
-<div class="container" fxLayout="row" >
-  <div class="view" fxFlex>
-    <button mat-button 
-     *ngFor= "let view of viewName;" [value]="selectedView" (click)="onSelectView(view)">{{view}}
-    </button>
-  </div>
-</div>
-<div class="container" fxLayout="row" >
-  <div class="color" fxFlex>
-   <button mat-button *ngFor= "let color of colorName;" [value]="color" (click)="onSelectColor(color)">{{color}}
-   </button>
-  </div>
-</div>
-</div>
-</mat-expansion-panel>-->
 
 
 <filter-component #filter [selected]="selected" [isoList]="isoList" [statusList]="statusList"></filter-component>
 
-<table datatable class="row-border hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Foo</td>
-        <td>Bar</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Someone</td>
-        <td>Youknow</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Iamout</td>
-        <td>Ofinspiration</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Yoda</td>
-        <td>Skywalker</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Patrick</td>
-        <td>Dupont</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>Barack</td>
-        <td>Obama</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>François</td>
-        <td>Holland</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>Michel</td>
-        <td>Popo</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>Chuck</td>
-        <td>Norris</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td>Simon</td>
-        <td>Robin</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td>Louis</td>
-        <td>Lin</td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td>Zelda</td>
-        <td>Link</td>
-      </tr>
-    </tbody>
-  </table>

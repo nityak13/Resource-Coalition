@@ -41,6 +41,7 @@ export class SelectionMenuComponent implements OnInit {
   colorName = ["Status", "Power", "SOC", "%SOC"]
   selectedView;
   selectedColor;
+  clearDisplay=true;
   filterFlag=false;
   statusList = ["NK", "NC", "GI", "CH", "OE", "VE"]
   
@@ -62,15 +63,17 @@ export class SelectionMenuComponent implements OnInit {
   
   
   }
+  clearSelection(){
+    this.filterComponent.clearSelection();
+    this.selectedView=null;
+    this.selectedColor=null;
+    this.selected=null;
+    this.clearDisplay=false;
 
-  // filterAllResources(val){
-  //   if(val=="All")
-  //   this.filter.filterAllResources(val);
-  // }
+  }
+ 
   filterResources(val:String)
   {
-    //this.filterComponent.statusList=this.statusList;
-  // this.sharedProperty.setSelected(this.selected);
   console.log(val);
     this.filterComponent.filterResource(val);
     

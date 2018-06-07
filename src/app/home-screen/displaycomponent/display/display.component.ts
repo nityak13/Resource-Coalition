@@ -27,6 +27,8 @@ export class DisplayComponent implements OnInit {
 
   selectedView;
   selectedColor;
+  clearDisplay;
+  
  
 
   constructor(private filterService:FilterService) {
@@ -43,13 +45,22 @@ export class DisplayComponent implements OnInit {
    ngAfterViewInit(){
     
    }
+   ngOnChanges(){
+    this.filteredResources=this.filterService.getFilteredData();
+    this.filteredResources2=this.filterService.getFilteredData2()
+   }
    ngDoCheck(){
+     
     this.filteredResources=this.filterService.getFilteredData();
     this.filteredResources2=this.filterService.getFilteredData2();
     if(this.filteredResources){
       if(this.filteredResources.length<300){
-      this.width=50;
-      this.height=50;
+      this.width=40;
+      this.height=40;
+      }
+      else if(this.filteredResources.length>1000) {
+        this.width=10;
+        this.height=10;
       }
       else {
         this.width=30;
@@ -58,8 +69,12 @@ export class DisplayComponent implements OnInit {
     }
     if(this.filteredResources2){
       if(this.filteredResources2.length<300){
-      this.width=50;
-      this.height=50;
+      this.width=40;
+      this.height=40;
+      }
+      else if(this.filteredResources2.length>1000) {
+        this.width=10;
+        this.height=10;
       }
       else {
         this.width=30;
@@ -68,24 +83,8 @@ export class DisplayComponent implements OnInit {
     }
    }
 
-  //  doResize(event, ui) {
   
-  //   var scale, origin;
-      
-  //   scale = Math.min(
-  //     ui.size.width / this.elWidth,    
-  //     ui.size.height / this.elHeight
-  //   );
-  //   this.$el.css({
-  //     transform: "translate(-50%, -50%) " + "scale(" + scale + ")"
-  //   });
-  // }
-  // starterData = { 
-  //   size: {
-  //     width: this.$wrapper.width(),
-  //     height: this.$wrapper.height()
-  //   }
-  // }
+
   
 
    resourceDidClick(resource) {

@@ -20,8 +20,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule,MatSidenavModule,MatMenuModule,
   MatToolbarModule,MatCheckboxModule,MatSelectModule, MatListModule,MatButtonToggleModule,MatTableModule,
-  MatExpansionModule,MatCardModule
+  MatExpansionModule,MatCardModule,MatInputModule
 } from '@angular/material';
+import { CdkTableModule } from '@angular/cdk/table';
+
 import { ResizableModule } from 'angular-resizable-element';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 //import * as $ from 'jquery';
@@ -50,6 +52,7 @@ import { ListComponent } from './home-screen/displaycomponent/list/list.componen
     ListComponent,
     
     
+    
   
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -73,7 +76,11 @@ import { ListComponent } from './home-screen/displaycomponent/list/list.componen
     MatCardModule,
     ResizableModule,
     FlexLayoutModule,
-    DataTablesModule
+    DataTablesModule,
+    CdkTableModule,
+    MatInputModule
+    
+    
   ],
   exports: [],
   providers: [ IsolistService, FilterService, VehicleService, PropertySharingService],

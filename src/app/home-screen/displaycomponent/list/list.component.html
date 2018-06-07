@@ -1,16 +1,50 @@
-<table datatable [dtOptions]="dtOptions" class="row-border hover">
-    <thead>
-        <tr>
-          <th>ID</th>
-          <th>First name</th>
-          <th>Last name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let res of filteredResources">
-          <td>{{ res.iso_id }}</td>
-          <td>{{ res.primary_status }}</td>
-          <td>{{ res.soc }}</td>
-        </tr>
-      </tbody>
-</table>
+
+ <div class="example-header">
+    <!-- <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div> -->
+<mat-table  [dataSource]="dataSource" class="example-container mat-elevation-z8" matSort>
+    
+    <ng-container matColumnDef="car_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Car Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.car_name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="vin">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Vin Num </mat-header-cell>
+          <mat-cell *matCellDef="let row "> {{row.vin}} </mat-cell>
+        </ng-container>
+    <ng-container matColumnDef="iso_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ISO </mat-header-cell>
+        <mat-cell *matCellDef="let row "> {{row.iso_id}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="primary_status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let row "> {{row.primary_status}} </mat-cell>
+      </ng-container>
+    
+    <ng-container matColumnDef="energy_charge">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Energy Charge </mat-header-cell>
+        <mat-cell *matCellDef="let row "> {{row.energy_charge}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="soc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SOC </mat-header-cell>
+        <mat-cell *matCellDef="let row "> {{row.soc}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="soc_kwh">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SOC Kwh </mat-header-cell>
+        <mat-cell *matCellDef="let row "> {{row.soc_kwh}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="volts">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Volts </mat-header-cell>
+        <mat-cell *matCellDef="let row "> {{row.volts}} </mat-cell>
+      </ng-container>
+   
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-paginator 
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      [showFirstLastButtons]="true">
+</mat-paginator>
+</mat-table> 

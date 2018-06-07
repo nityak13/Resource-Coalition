@@ -19,9 +19,7 @@ export class ArrayComponent implements OnInit {
    f1;
    f2;
 
-  selectedView;
-  selectedColor;
- 
+  color;
 
   constructor(private filterService:FilterService) {
     //this.doResize(null, this.starterData);
@@ -38,6 +36,10 @@ export class ArrayComponent implements OnInit {
     
    }
    ngDoCheck(){
+     if(this.color=="status")
+     {
+       
+     }
     this.filteredResources=this.filterService.getFilteredData();
     this.filteredResources2=this.filterService.getFilteredData2();
     if(this.filteredResources){

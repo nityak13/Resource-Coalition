@@ -1,15 +1,4 @@
-<div array-body>
-    <mat-card class="ui-array-resources" >
-        <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)"    
-        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
-        [ngClass]="{'ui-status-not-connected': resource.primary_status==='NC',
-        'ui-status-sleeping': resource.primary_status==='SLP',
-        'ui-status-inactive': resource.primary_status==='IA',
-        'ui-status-available': resource.primary_status==='GI',
-        'selected-resource': resource === selectedResource}" >
-        </div>
-    </mat-card>
-</div>
+
 
 <div array-body>
 <div *ngIf="filteredResources">

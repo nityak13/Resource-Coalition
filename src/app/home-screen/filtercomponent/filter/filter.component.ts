@@ -4,6 +4,7 @@ import { VehicleService } from './../../../services/vehicle.service'
 import { FilterService } from './../../../services/filter.service'
 import { IsolistService } from './../../../services/isoList.service'
 
+
 @Component({
   selector: 'filter-component',
   templateUrl: './filter.component.html',
@@ -15,14 +16,20 @@ export class FilterComponent implements OnInit,AfterViewInit {
   isoList=[];
   resources: Array<any>;
   errorMessage: String;
+  //2-way databinding var between template and logic
   selected: String;
+  //flags for re-filtering by either condition
   flagIso=false;
   flagStatus=false;  
+  //var for storing values selected from drop-down list
   isoValue: String;
   statusValue: String;
-  filteredResources: Array<any>;
-  filteredResources2:Array<any>;
-  @Input() statusList=[];
+  //var for res by TSO
+  filteredResources: Array<any>; 
+  // var for res by Status
+  filteredResources2:Array<any>; 
+  allResources:Array<any>;
+  @Input() statusList=["GI","SLP","IA","NC"];
   constructor(private vehicleService:VehicleService,private filterService:FilterService,
     private isolistService: IsolistService) { 
     this.isoList=[];
@@ -53,20 +60,39 @@ export class FilterComponent implements OnInit,AfterViewInit {
     
   }
 
+  clearSelection(){
+    this.filteredResources=[];
+    this.filteredResources2=[];
+    this.filterService.setFilteredData(this.filteredResources);
+    this.filterService.setFilteredData2(this.filteredResources2);
+    this.filterService.getFilteredData();
+    this.filterService.getFilteredData2();
+
+  }
+
 filterAllResources(val){
 
-}
-filterResource(val) {
-  console.log("triggered from parent");
-  console.log(val);
-  if(val=="All"){
-    this.filteredResources=this.resources;
-    this.filteredResources2=this.resources;
-    this.filterService.setFilteredData2(this.filteredResources2);
-    this.filterService.setFilteredData(this.filteredResources);
-          return this.filterService.getFilteredData(), this.filterService.getFilteredData2();
+  if(val=="AllTSO"){
+    this.allResources=this.resources; 
+    this.filterService.setFilteredData(this.allResources);
+          return this.filterService.getFilteredData()
+         
           
   }
+  else if(val=="AllStatus"){
+    this.allResources=this.resources;
+    this.filterService.setFilteredData2(this.allResources);
+    return  this.filterService.getFilteredData2();
+  }
+}
+filterResource(val) {
+  
+  
+  if(val=="AllTSO" || val=="AllStatus"){
+    this.filterService.setFilteredData(this.resources);
+    return this.filterService.getFilteredData();
+  }
+  
   else{
   for(let iso of this.isoList)
     {
@@ -103,7 +129,10 @@ filterResource(val) {
           .filter( resource => resource.primary_status === val)
           .filter( resource => resource.iso_id === this.isoValue)
           this.filterService.setFilteredData(this.filteredResources);
-          return this.filterService.getFilteredData();
+          // if(this.filterService.getFilteredData()==[])
+          // alert("No data obtained");
+          // else
+          return this.filterService.getFilteredData()
         }
       else
         {
@@ -111,7 +140,7 @@ filterResource(val) {
           this.statusValue=val;
           this.filteredResources2 = this.resources
           .filter ( resource => resource.primary_status === val)
-          return this.filterService.setFilteredData2(this.filteredResources2);
+        return this.filterService.setFilteredData2(this.filteredResources2);
 
         }
       }
@@ -120,9 +149,7 @@ filterResource(val) {
 }
 
 //method stub for filtering by market
-// filterByMarket(val){
-
-// }
+// filterByMarket(val){ }
 
 
 }

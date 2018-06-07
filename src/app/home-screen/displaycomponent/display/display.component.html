@@ -1,40 +1,317 @@
 
+
 <div *ngIf="filteredResources">
-        <div *ngIf="selectedView==='Array'">
-                <div *ngIf="selectedColor==='Status'">
-                <app-array>
-                <ng-content select="[array-body]"></ng-content>
-                </app-array>
-                </div>
+        <div *ngIf="selectedView==='Array'">  
+               <div *ngIf="selectedColor==='Status'"> 
+                    
+                        <mat-card >
+                        <div class="status-key" >
+                        <mat-expansion-panel > 
+                                <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                <mat-panell-description>
+                                        <ul type="none">
+                                                <li class="ui-badge NC"><span class="status-num">NC</span></li><li class=" ui-badge GI"><span class="status-num">GI</span></li><li class="ui-badge SLP"><span class="status-num">SLP</span></li>
+                                                <li class="ui-badge IA"><span class="status-num">IA</span></li>
+                                        </ul>
+                                </mat-panell-description>
+                        </mat-expansion-panel>
+                        </div>
+                        <div class="ui-array-resources" >
+                                        
+                                        <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)"    
+                                        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                        [ngClass]="{'ui-status-not-connected': resource.primary_status==='NC',
+                                        'ui-status-sleeping': resource.primary_status==='SLP',
+                                        'ui-status-inactive': resource.primary_status==='IA',
+                                        'ui-status-available': resource.primary_status==='GI',
+                                        'selected-resource': resource === selectedResource}" >
+                                        </div>
+                                    </div>  
+                                </mat-card>
+        </div>
         </div>
 </div>
 <div *ngIf="filteredResources">
-        <div *ngIf="selectedView==='Array'">
-                <div *ngIf="selectedColor==='Power'">
-                <app-array>
-                <ng-content select="[array-body]"></ng-content>
-                </app-array>
-                </div>
+ <div *ngIf="selectedView==='Array'">
+        <div *ngIf="selectedColor==='Power'"> 
+                <mat-card fxLayoutWrap>
+                                <div class="status-key" fxFlex>
+                                                <mat-expansion-panel *ngIf="filteredResources" fxLayoutWrap> 
+                                                                <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                                <mat-panel-description>
+                                                                        <div fxLayoutAlign="center">
+                                                                        <ul type="none">
+                                                                                        <li class="ui-badge c0"><span class="status-num">-100</span></li><li class=" ui-badge c1"><span class="status-num">-90</span></li><li class="ui-badge c2"><span class="status-num">-80</span></li><li class="ui-badge c3"><span class="status-num">-70</span></li><li class="ui-badge c4"><span class="status-num">-60</span></li>
+                                                                                        <li class="ui-badge c5"><span class="status-num">-50</span></li><li class="ui-badge c6"><span class="status-num">-40</span></li><li class="ui-badge c7"><span class="status-num">-30</span></li><li class="ui-badge c8"><span class="status-num">-20</span></li><li class="ui-badge c9"><span class="status-num">-10</span></li>
+                                                                                        <li class="ui-badge c10"><span class="status-num">0</span></li><li class="ui-badge c11"><span class="status-num">10</span></li><li class="ui-badge c12"><span class="status-num">20</span></li><li class="ui-badge c13"><span class="status-num">30</span></li><li class="ui-badge c14"><span class="status-num">40</span></li>
+                                                                                        <li class="ui-badge c15"><span class="status-num">50</span></li><li class="ui-badge c16"><span class="status-num">60</span></li><li class="ui-badge c17"><span class="status-num">70</span></li><li class="ui-badge c18"><span class="status-num">80</span></li><li class="ui-badge c19"><span class="status-num">90</span></li>
+                                                                                        <li class="ui-badge c20"><span class="status-num">100</span></li>
+                                                                                </ul>
+                                                                        </div>
+                                                                                
+                                                                </mat-panel-description>
+
+                                                        </mat-expansion-panel>
+                                                
+                                        </div>
+                        <div class="ui-array-resources">
+                               
+
+                                
+                                        <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                                        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                        [ngClass]="{'c0' : (resource.power_flow >= -100 && resource.power_flow <=-90), 
+                                        'c1' : (resource.power_flow > -90 && resource.power_flow <= -80), 'c2' : (resource.power_flow > -80 && resource.power_flow <=-70), 'c3' : (resource.power_flow > -70 && resource.power_flow <= -60), 
+                                        'c4' : (resource.power_flow > -60 && resource.power_flow<= -50), 'c5' : (resource.power_flow >-50 && resource.power_flow <= -40), 'c6' : (resource.power_flow > -40 && resource.power_flow<= -30), 
+                                        'c7' : (resource.power_flow > -30 && resource.power_flow <= -20), 'c8' : (resource.power_flow >-20 && resource.power_flow <=-10),'c9' : (resource.power_flow >-10 && resource.power_flow <=0),
+                                        'c10' : (resource.power_flow >0 && resource.power_flow <= 10),'c11' : (resource.power_flow >10 && resource.power_flow <= 20), 'c12' : (resource.power_flow > 20 && resource.power_flow <= 30), 
+                                        'c13' : (resource.power_flow > 30 && resource.power_flow <=40),'c14' : (resource.power_flow >40 && resource.power_flow <=50), 'c15' : (resource.power_flow >50 && resource.power_flow <=60),
+                                        'c16' : (resource.power_flow >60 && resource.power_flow <= 70), 'c17' : (resource.power_flow >70 && resource.power_flow <=80),'c18' : (resource.power_flow > 80 && resource.power_flow <= 90), 
+                                        'c19' : (resource.power_flow > 90 && resource.power_flow <= 100),'selected-resource': resource === selectedResource}">
+                                        </div>
+                                    </div>
+                </mat-card>
         </div>
+ </div>
 </div>
 <div *ngIf="filteredResources">
-        <div *ngIf="selectedView==='Array'">
-                <div *ngIf="selectedColor==='SOC'">
-                <app-array>
-                <ng-content select="[array-body]"></ng-content>
-                </app-array>
+                <div *ngIf="selectedView==='Array'">
+        <div *ngIf="selectedColor==='SOC'"> 
+                <mat-card>
+                                <div class="status-key" fxFlex>
+                                                <mat-expansion-panel *ngIf="filteredResources" fxLayoutWrap> 
+                                                                <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                                <mat-panel-description>
+                                                                        <div fxLayoutAlign="center">
+                                                                        <ul type="none">
+                                                                                        <li class="ui-badge c0"><span class="status-num">0</span></li><li class=" ui-badge c1"><span class="status-num">5</span></li><li class="ui-badge c2"><span class="status-num">10</span></li><li class="ui-badge c3"><span class="status-num">15</span></li><li class="ui-badge c4"><span class="status-num">20</span></li>
+                                                                                        <li class="ui-badge c5"><span class="status-num">25</span></li><li class="ui-badge c6"><span class="status-num">30</span></li><li class="ui-badge c7"><span class="status-num">35</span></li><li class="ui-badge c8"><span class="status-num">40</span></li><li class="ui-badge c9"><span class="status-num">45</span></li>
+                                                                                        <li class="ui-badge c10"><span class="status-num">50</span></li><li class="ui-badge c11"><span class="status-num">55</span></li><li class="ui-badge c12"><span class="status-num">60</span></li><li class="ui-badge c13"><span class="status-num">65</span></li><li class="ui-badge c14"><span class="status-num">70</span></li>
+                                                                                        <li class="ui-badge c15"><span class="status-num">75</span></li><li class="ui-badge c16"><span class="status-num">80</span></li><li class="ui-badge c17"><span class="status-num">85</span></li><li class="ui-badge c18"><span class="status-num">90</span></li><li class="ui-badge c19"><span class="status-num">95</span></li>
+                                                                                        <li class="ui-badge c20"><span class="status-num">100</span></li>
+                                                                                </ul>
+                                                                        </div>
+                                                                                
+                                                                </mat-panel-description>
+
+                                                        </mat-expansion-panel>
+                                                
+                                        </div>
+                <div class="ui-array-resources">
+                                <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                                [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                [ngClass]="{'c0' : (resource.soc_kwh >= -100 && resource.soc_kwh <=-90), 
+                                'c1' : (resource.soc_kwh > -90 && resource.soc_kwh <= -80), 'c2' : (resource.soc_kwh > -80 && resource.soc_kwh <=-70), 'c3' : (resource.soc_kwh > -70 && resource.soc_kwh <= -60), 
+                                'c4' : (resource.soc_kwh > -60 && resource.soc_kwh<= -50), 'c5' : (resource.soc_kwh >-50 && resource.soc_kwh <= -40), 'c6' : (resource.soc_kwh > -40 && resource.soc_kwh<= -30), 
+                                'c7' : (resource.soc_kwh > -30 && resource.soc_kwh <= -20), 'c8' : (resource.soc_kwh >-20 && resource.soc_kwh <=-10),'c9' : (resource.soc_kwh >-10 && resource.soc_kwh <=0),
+                                'c10' : (resource.soc_kwh >0 && resource.soc_kwh <= 10),'c11' : (resource.soc_kwh >10 && resource.soc_kwh <= 20), 'c12' : (resource.soc_kwh > 20 && resource.soc_kwh <= 30), 
+                                'c13' : (resource.soc_kwh > 30 && resource.soc_kwh <=40),'c14' : (resource.soc_kwh >40 && resource.soc_kwh <=50), 'c15' : (resource.soc_kwh >50 && resource.soc_kwh <=60),
+                                'c16' : (resource.soc_kwh >60 && resource.soc_kwh <= 70), 'c17' : (resource.soc_kwh >70 && resource.soc_kwh <=80),'c18' : (resource.soc_kwh > 80 && resource.soc_kwh <= 90), 
+                                'c19' : (resource.soc_kwh > 90 && resource.soc_kwh <= 100),'selected-resource': resource === selectedResource}">
+                                </div>
                 </div>
+        </mat-card>
         </div>
+                </div>
 </div>
 <div *ngIf="filteredResources">
-        <div *ngIf="selectedView==='Array'">
-                <div *ngIf="selectedColor==='%SOC'">
-                <app-array>
-                <ng-content select="[array-body]"></ng-content>
-                </app-array>
+                <div *ngIf="selectedView==='Array'">
+        <div *ngIf="selectedColor==='%SOC'"> 
+                <mat-card>
+                                <div class="status-key" fxFlex>
+                                                <mat-expansion-panel *ngIf="filteredResources" fxLayoutWrap> 
+                                                                <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                                <mat-panel-description>
+                                                                        <div fxLayoutAlign="center">
+                                                                        <ul type="none">
+                                                                                        <li class="ui-badge c0"></li><li class=" ui-badge c1"></li><li class="ui-badge c2"></li><li class="ui-badge c3"></li><li class="ui-badge c4"></li>
+                                                                                        <li class="ui-badge c5"></li><li class="ui-badge c6"></li><li class="ui-badge c7"></li><li class="ui-badge c8"></li><li class="ui-badge c9"></li>
+                                                                                        <li class="ui-badge c10"></li><li class="ui-badge c11"></li><li class="ui-badge c12"></li><li class="ui-badge c13"></li><li class="ui-badge c14"></li>
+                                                                                        <li class="ui-badge c15"></li><li class="ui-badge c16"></li><li class="ui-badge c17"></li><li class="ui-badge c18"></li><li class="ui-badge c19"></li>
+                                                                                        <li class="ui-badge c20"></li>
+                                                                                </ul>
+                                                                        </div>
+                                                                                
+                                                                </mat-panel-description>
+
+                                                        </mat-expansion-panel>
+                                                
+                                        </div>
+                <div class="ui-array-resources">
+                                <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                                [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                [ngClass]="{'c0' : resource.soc <= 5, 'c1' : (resource.soc > 5 && resource.soc <= 10), 'c2' : (resource.soc > 10 && resource.soc <= 15), 'c3' : (resource.soc > 15 && resource.soc <= 20), 
+                                'c4' : (resource.soc > 20 && resource.soc<= 25), 'c5' : (resource.soc > 25 && resource.soc <= 30), 'c6' : (resource.soc > 30 && resource.soc<= 35), 'c7' : (resource.soc > 35 && resource.soc <= 40), 
+                                'c8' : (resource.soc > 40 && resource.soc <= 45), 'c9' : (resource.soc > 45 && resource.soc <= 50), 'c10' : (resource.soc > 50 && resource.soc <= 55), 'c11' : (resource.soc > 55 && resource.soc <= 60), 
+                                'c12' : (resource.soc > 60 && resource.soc <= 65), 'c13' : (resource.soc > 65 && resource.soc <= 70), 'c14' : (resource.soc > 70 && resource.soc <= 75), 'c15' : (resource.soc > 75 && resource.soc <= 80), 
+                                'c16' : (resource.soc > 80 && resource.soc <= 85), 'c17' : (resource.soc > 85 && resource.soc <= 90), 'c18' : (resource.soc > 90 && resource.soc <= 95), 'c19' : (resource.soc > 95 && resource.soc <= 100),
+                                'selected-resource': resource === selectedResource}">
+                                </div>
                 </div>
+        </mat-card>
+        </div>
         </div>
 </div>
+
+<!-- for reosurces filtered by status -->
+<div *ngIf="filteredResources2">
+                <div *ngIf="selectedView==='Array'">  
+                       <div *ngIf="selectedColor==='Status'"> 
+                               <mat-card>
+                                        <div class="status-key" fxFlex>
+                                                        <mat-expansion-panel *ngIf="filteredResources" fxLayoutWrap> 
+                                                                        <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                                        <mat-panel-description>
+                                                                                <div fxLayoutAlign="center">
+                                                                                <ul type="none">
+                                                                                                <li class="ui-badge c0"></li><li class=" ui-badge c1"></li><li class="ui-badge c2"></li><li class="ui-badge c3"></li><li class="ui-badge c4"></li>
+                                                                                                <li class="ui-badge c5"></li><li class="ui-badge c6"></li><li class="ui-badge c7"></li><li class="ui-badge c8"></li><li class="ui-badge c9"></li>
+                                                                                                <li class="ui-badge c10"></li><li class="ui-badge c11"></li><li class="ui-badge c12"></li><li class="ui-badge c13"></li><li class="ui-badge c14"></li>
+                                                                                                <li class="ui-badge c15"></li><li class="ui-badge c16"></li><li class="ui-badge c17"></li><li class="ui-badge c18"></li><li class="ui-badge c19"></li>
+                                                                                                <li class="ui-badge c20"></li>
+                                                                                        </ul>
+                                                                                </div>
+                                                                                        
+                                                                        </mat-panel-description>
+        
+                                                                </mat-expansion-panel>
+                                                        
+                                                </div>
+                                <div class="ui-array-resources" >
+                                                <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)"    
+                                                [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                                [ngClass]="{'ui-status-not-connected': resource.primary_status==='NC',
+                                                'ui-status-sleeping': resource.primary_status==='SLP',
+                                                'ui-status-inactive': resource.primary_status==='IA',
+                                                'ui-status-available': resource.primary_status==='GI',
+                                                'selected-resource': resource === selectedResource}" >
+                                                </div>
+                                            </div>  
+                                </mat-card>
+                </div>
+        
+                </div>
+        </div>
+        <div *ngIf="filteredResources2">
+         <div *ngIf="selectedView==='Array'">
+                <div *ngIf="selectedColor==='Power'"> 
+                        <mat-card>
+                                <div class="ui-array-resources">
+                                                <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                                                [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                                [ngClass]="{'c0' : (resource.power_flow >= -100 && resource.power_flow <=-90), 
+                                                'c1' : (resource.power_flow > -90 && resource.power_flow <= -80), 'c2' : (resource.power_flow > -80 && resource.power_flow <=-70), 'c3' : (resource.power_flow > -70 && resource.power_flow <= -60), 
+                                                'c4' : (resource.power_flow > -60 && resource.power_flow<= -50), 'c5' : (resource.power_flow >-50 && resource.power_flow <= -40), 'c6' : (resource.power_flow > -40 && resource.power_flow<= -30), 
+                                                'c7' : (resource.power_flow > -30 && resource.power_flow <= -20), 'c8' : (resource.power_flow >-20 && resource.power_flow <=-10),'c9' : (resource.power_flow >-10 && resource.power_flow <=0),
+                                                'c10' : (resource.power_flow >0 && resource.power_flow <= 10),'c11' : (resource.power_flow >10 && resource.power_flow <= 20), 'c12' : (resource.power_flow > 20 && resource.power_flow <= 30), 
+                                                'c13' : (resource.power_flow > 30 && resource.power_flow <=40),'c14' : (resource.power_flow >40 && resource.power_flow <=50), 'c15' : (resource.power_flow >50 && resource.power_flow <=60),
+                                                'c16' : (resource.power_flow >60 && resource.power_flow <= 70), 'c17' : (resource.power_flow >70 && resource.power_flow <=80),'c18' : (resource.power_flow > 80 && resource.power_flow <= 90), 
+                                                'c19' : (resource.power_flow > 90 && resource.power_flow <= 100),'selected-resource': resource === selectedResource}">
+                                                </div>
+                                            </div>
+                        </mat-card>
+                </div>
+        
+         </div>
+        </div>
+        <div *ngIf="filteredResources2">
+                        <div *ngIf="selectedView==='Array'">
+                <div *ngIf="selectedColor==='SOC'"> 
+                        <mat-card>
+                        <div class="ui-array-resources">
+                                        <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                                        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                        [ngClass]="{'c0' : (resource.soc_kwh >= -100 && resource.soc_kwh <=-90), 
+                                        'c1' : (resource.soc_kwh > -90 && resource.soc_kwh <= -80), 'c2' : (resource.soc_kwh > -80 && resource.soc_kwh <=-70), 'c3' : (resource.soc_kwh > -70 && resource.soc_kwh <= -60), 
+                                        'c4' : (resource.soc_kwh > -60 && resource.soc_kwh<= -50), 'c5' : (resource.soc_kwh >-50 && resource.soc_kwh <= -40), 'c6' : (resource.soc_kwh > -40 && resource.soc_kwh<= -30), 
+                                        'c7' : (resource.soc_kwh > -30 && resource.soc_kwh <= -20), 'c8' : (resource.soc_kwh >-20 && resource.soc_kwh <=-10),'c9' : (resource.soc_kwh >-10 && resource.soc_kwh <=0),
+                                        'c10' : (resource.soc_kwh >0 && resource.soc_kwh <= 10),'c11' : (resource.soc_kwh >10 && resource.soc_kwh <= 20), 'c12' : (resource.soc_kwh > 20 && resource.soc_kwh <= 30), 
+                                        'c13' : (resource.soc_kwh > 30 && resource.soc_kwh <=40),'c14' : (resource.soc_kwh >40 && resource.soc_kwh <=50), 'c15' : (resource.soc_kwh >50 && resource.soc_kwh <=60),
+                                        'c16' : (resource.soc_kwh >60 && resource.soc_kwh <= 70), 'c17' : (resource.soc_kwh >70 && resource.soc_kwh <=80),'c18' : (resource.soc_kwh > 80 && resource.soc_kwh <= 90), 
+                                        'c19' : (resource.soc_kwh > 90 && resource.soc_kwh <= 100),'selected-resource': resource === selectedResource}">
+                                        </div>
+                        </div>
+                </mat-card>
+                </div>
+                        </div>
+        </div>
+        <div *ngIf="filteredResources2">
+                        <div *ngIf="selectedView==='Array'">
+                <div *ngIf="selectedColor==='%SOC'"> 
+                        <mat-card>
+                        <div class="ui-array-resources">
+                                        <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                                        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                                        [ngClass]="{'c0' : resource.soc <= 5, 'c1' : (resource.soc > 5 && resource.soc <= 10), 'c2' : (resource.soc > 10 && resource.soc <= 15), 'c3' : (resource.soc > 15 && resource.soc <= 20), 
+                                        'c4' : (resource.soc > 20 && resource.soc<= 25), 'c5' : (resource.soc > 25 && resource.soc <= 30), 'c6' : (resource.soc > 30 && resource.soc<= 35), 'c7' : (resource.soc > 35 && resource.soc <= 40), 
+                                        'c8' : (resource.soc > 40 && resource.soc <= 45), 'c9' : (resource.soc > 45 && resource.soc <= 50), 'c10' : (resource.soc > 50 && resource.soc <= 55), 'c11' : (resource.soc > 55 && resource.soc <= 60), 
+                                        'c12' : (resource.soc > 60 && resource.soc <= 65), 'c13' : (resource.soc > 65 && resource.soc <= 70), 'c14' : (resource.soc > 70 && resource.soc <= 75), 'c15' : (resource.soc > 75 && resource.soc <= 80), 
+                                        'c16' : (resource.soc > 80 && resource.soc <= 85), 'c17' : (resource.soc > 85 && resource.soc <= 90), 'c18' : (resource.soc > 90 && resource.soc <= 95), 'c19' : (resource.soc > 95 && resource.soc <= 100),
+                                        'selected-resource': resource === selectedResource}">
+                                        </div>
+                        </div>
+                </mat-card>
+                </div>
+                </div>
+        </div>
+
+        <div class="details">
+                        <mat-card *ngIf="selectedResource" [ngClass]="{'ui-status-available': selectedResource.primary_status==='GI', 
+                        'ui-status-not-connected': selectedResource.primary_status==='NC', 'ui-status-sleeping': selectedResource.primary_status==='SLP',
+                        'ui-status-inactive':selectedResource.primary_status==='IA',
+                        'c0' : (selectedResource.power_flow >= -100 && selectedResource.power_flow <=-90), 
+                        'c1' : (selectedResource.power_flow > -90 && selectedResource.power_flow <= -80), 'c2' : (selectedResource.power_flow > -80 && selectedResource.power_flow <=-70), 'c3' : (selectedResource.power_flow > -70 && selectedResource.power_flow <= -60), 
+                        'c4' : (selectedResource.power_flow > -60 && selectedResource.power_flow<= -50), 'c5' : (selectedResource.power_flow >-50 && selectedResource.power_flow <= -40), 'c6' : (selectedResource.power_flow > -40 && selectedResource.power_flow<= -30), 
+                        'c7' : (selectedResource.power_flow > -30 && selectedResource.power_flow <= -20), 'c8' : (selectedResource.power_flow >-20 && selectedResource.power_flow <=-10),'c9' : (selectedResource.power_flow >-10 && selectedResource.power_flow <=0),
+                        'c10' : (selectedResource.power_flow >0 && selectedResource.power_flow <= 10),'c11' : (selectedResource.power_flow >10 && selectedResource.power_flow <= 20), 'c12' : (selectedResource.power_flow > 20 && selectedResource.power_flow <= 30), 
+                        'c13' : (selectedResource.power_flow > 30 && selectedResource.power_flow <=40),'c14' : (selectedResource.power_flow >40 && selectedResource.power_flow <=50), 'c15' : (selectedResource.power_flow >50 && selectedResource.power_flow <=60),
+                        'c16' : (selectedResource.power_flow >60 && selectedResource.power_flow <= 70), 'c17' : (selectedResource.power_flow >70 && selectedResource.power_flow <=80),'c18' : (selectedResource.power_flow > 80 && selectedResource.power_flow <= 90), 
+                        'c19' : (selectedResource.power_flow > 90 && selectedResource.power_flow <= 100),
+                        'c0' : selectedResource.soc <= 5, 'c1' : (selectedResource.soc > 5 && selectedResource.soc <= 10), 'c2' : (selectedResource.soc > 10 && selectedResource.soc <= 15), 'c3' : (selectedResource.soc > 15 && selectedResource.soc <= 20), 
+                        'c4' : (selectedResource.soc > 20 && selectedResource.soc<= 25), 'c5' : (selectedResource.soc > 25 && selectedResource.soc <= 30), 'c6' : (selectedResource.soc > 30 && selectedResource.soc<= 35), 'c7' : (selectedResource.soc > 35 && selectedResource.soc <= 40), 
+                        'c8' : (selectedResource.soc > 40 && selectedResource.soc <= 45), 'c9' : (selectedResource.soc > 45 && selectedResource.soc <= 50), 'c10' : (selectedResource.soc > 50 && selectedResource.soc <= 55), 'c11' : (selectedResource.soc > 55 && selectedResource.soc <= 60), 
+                        'c12' : (selectedResource.soc > 60 && selectedResource.soc <= 65), 'c13' : (selectedResource.soc > 65 && selectedResource.soc <= 70), 'c14' : (selectedResource.soc > 70 && selectedResource.soc <= 75), 'c15' : (selectedResource.soc > 75 && selectedResource.soc <= 80), 
+                        'c16' : (selectedResource.soc > 80 && selectedResource.soc <= 85), 'c17' : (selectedResource.soc > 85 && selectedResource.soc <= 90), 'c18' : (selectedResource.soc > 90 && selectedResource.soc <= 95), 'c19' : (selectedResource.soc > 95 && selectedResource.soc <= 100),
+                        'c0' : (selectedResource.soc_kwh >= -100 && selectedResource.soc_kwh <=-90), 
+                        'c1' : (selectedResource.soc_kwh > -90 && selectedResource.soc_kwh <= -80), 'c2' : (selectedResource.soc_kwh > -80 && selectedResource.soc_kwh <=-70), 'c3' : (selectedResource.soc_kwh > -70 && selectedResource.soc_kwh <= -60), 
+                        'c4' : (selectedResource.soc_kwh > -60 && selectedResource.soc_kwh<= -50), 'c5' : (selectedResource.soc_kwh >-50 && selectedResource.soc_kwh <= -40), 'c6' : (selectedResource.soc_kwh > -40 && selectedResource.soc_kwh<= -30), 
+                        'c7' : (selectedResource.soc_kwh > -30 && selectedResource.soc_kwh <= -20), 'c8' : (selectedResource.soc_kwh >-20 && selectedResource.soc_kwh <=-10),'c9' : (selectedResource.soc_kwh >-10 && selectedResource.soc_kwh <=0),
+                        'c10' : (selectedResource.soc_kwh >0 && selectedResource.soc_kwh <= 10),'c11' : (selectedResource.soc_kwh >10 && selectedResource.soc_kwh <= 20), 'c12' : (selectedResource.soc_kwh > 20 && selectedResource.soc_kwh <= 30), 
+                        'c13' : (selectedResource.soc_kwh > 30 && selectedResource.soc_kwh <=40),'c14' : (selectedResource.soc_kwh >40 && selectedResource.soc_kwh <=50), 'c15' : (selectedResource.soc_kwh >50 && selectedResource.soc_kwh <=60),
+                        'c16' : (selectedResource.soc_kwh >60 && selectedResource.soc_kwh <= 70), 'c17' : (selectedResource.soc_kwh >70 && selectedResource.soc_kwh <=80),'c18' : (selectedResource.soc_kwh > 80 && selectedResource.soc_kwh <= 90), 
+                        'c19' : (selectedResource.soc_kwh > 90 && selectedResource.soc_kwh <= 100)}">
+                         
+                          <mat-card-content>
+                              <div class="ui-row">
+                                        <div class="ui-column">
+                                                        <div>{{selectedResource.car_name}}</div>
+                                                        <div>{{selectedResource.evse_name}}</div>
+                                                    </div>
+                                  <div class="ui-column">
+                                      <div>ISO</div>
+                                      <div>{{selectedResource.iso_id}}</div>
+                                  </div>
+                                  <div class="ui-column">
+                                      <div>Power Capacity Up</div>
+                                      <div>{{selectedResource.power_capacity_up}}</div>
+                                  </div>
+                                  <div class="ui-column">
+                                      <div>Power Capacity Down</div>
+                                      <div>{{selectedResource.power_capacity_down}}</div>
+                                  </div>
+                                  <div class="ui-column">
+                                      <div>Volts</div>
+                                      <div>{{selectedResource.volts}}</div>
+                                  </div>
+                                  <div class="ui-column">
+                                      <div>Status</div>
+                                      <div>{{selectedResource.primary_status}}</div>
+                                  </div>
+                              </div>
+                          </mat-card-content>
+                        </mat-card>
+        </div>
+<!-- to switch to list view, taken to the list component -->
 <div *ngIf="filteredResources">
         <div *ngIf="selectedView==='List'">
                 <app-list>
@@ -43,6 +320,7 @@
         </div>
 </div>
 
+<!-- to switch to map view, taken to the map component -->
 <div *ngIf="filteredResources">
         <div *ngIf="selectedView==='Map'">
                 <div *ngIf="selectedColor==='Status'">
