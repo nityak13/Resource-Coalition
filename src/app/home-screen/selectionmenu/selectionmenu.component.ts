@@ -41,8 +41,9 @@ export class SelectionMenuComponent implements OnInit {
   colorName = ["Status", "Power", "SOC", "%SOC"]
   selectedView;
   selectedColor;
+  flagKey=true;
   clearDisplay=true;
-  filterFlag=false;
+
   statusList = ["NK", "NC", "GI", "CH", "OE", "VE"]
   
   constructor(private isolistService: IsolistService) {
@@ -69,6 +70,7 @@ export class SelectionMenuComponent implements OnInit {
     this.selectedColor=null;
     this.selected=null;
     this.clearDisplay=false;
+    this.flagKey=false;
 
   }
  

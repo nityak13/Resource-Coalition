@@ -5,8 +5,8 @@
                <div *ngIf="selectedColor==='Status'"> 
                     
                         <mat-card >
-                        <div class="status-key" >
-                        <mat-expansion-panel > 
+                        <div class="status-key">
+                        <mat-expansion-panel  fxLayoutWrap> 
                                 <mat-expansion-panel-header>key </mat-expansion-panel-header>
                                 <mat-panell-description>
                                         <ul type="none">
@@ -55,21 +55,18 @@
                                                 
                                         </div>
                         <div class="ui-array-resources">
-                               
-
-                                
-                                        <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
-                                        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
-                                        [ngClass]="{'c0' : (resource.power_flow >= -100 && resource.power_flow <=-90), 
-                                        'c1' : (resource.power_flow > -90 && resource.power_flow <= -80), 'c2' : (resource.power_flow > -80 && resource.power_flow <=-70), 'c3' : (resource.power_flow > -70 && resource.power_flow <= -60), 
-                                        'c4' : (resource.power_flow > -60 && resource.power_flow<= -50), 'c5' : (resource.power_flow >-50 && resource.power_flow <= -40), 'c6' : (resource.power_flow > -40 && resource.power_flow<= -30), 
-                                        'c7' : (resource.power_flow > -30 && resource.power_flow <= -20), 'c8' : (resource.power_flow >-20 && resource.power_flow <=-10),'c9' : (resource.power_flow >-10 && resource.power_flow <=0),
-                                        'c10' : (resource.power_flow >0 && resource.power_flow <= 10),'c11' : (resource.power_flow >10 && resource.power_flow <= 20), 'c12' : (resource.power_flow > 20 && resource.power_flow <= 30), 
-                                        'c13' : (resource.power_flow > 30 && resource.power_flow <=40),'c14' : (resource.power_flow >40 && resource.power_flow <=50), 'c15' : (resource.power_flow >50 && resource.power_flow <=60),
-                                        'c16' : (resource.power_flow >60 && resource.power_flow <= 70), 'c17' : (resource.power_flow >70 && resource.power_flow <=80),'c18' : (resource.power_flow > 80 && resource.power_flow <= 90), 
-                                        'c19' : (resource.power_flow > 90 && resource.power_flow <= 100),'selected-resource': resource === selectedResource}">
-                                        </div>
-                                    </div>
+                        <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
+                        [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
+                        [ngClass]="{'c0' : (resource.power_flow >= -100 && resource.power_flow <=-90), 
+                        'c1' : (resource.power_flow > -90 && resource.power_flow <= -80), 'c2' : (resource.power_flow > -80 && resource.power_flow <=-70), 'c3' : (resource.power_flow > -70 && resource.power_flow <= -60), 
+                        'c4' : (resource.power_flow > -60 && resource.power_flow<= -50), 'c5' : (resource.power_flow >-50 && resource.power_flow <= -40), 'c6' : (resource.power_flow > -40 && resource.power_flow<= -30), 
+                        'c7' : (resource.power_flow > -30 && resource.power_flow <= -20), 'c8' : (resource.power_flow >-20 && resource.power_flow <=-10),'c9' : (resource.power_flow >-10 && resource.power_flow <=0),
+                        'c10' : (resource.power_flow >0 && resource.power_flow <= 10),'c11' : (resource.power_flow >10 && resource.power_flow <= 20), 'c12' : (resource.power_flow > 20 && resource.power_flow <= 30), 
+                        'c13' : (resource.power_flow > 30 && resource.power_flow <=40),'c14' : (resource.power_flow >40 && resource.power_flow <=50), 'c15' : (resource.power_flow >50 && resource.power_flow <=60),
+                        'c16' : (resource.power_flow >60 && resource.power_flow <= 70), 'c17' : (resource.power_flow >70 && resource.power_flow <=80),'c18' : (resource.power_flow > 80 && resource.power_flow <= 90), 
+                        'c19' : (resource.power_flow > 90 && resource.power_flow <= 100),'selected-resource': resource === selectedResource}">
+                        </div>
+                        </div>
                 </mat-card>
         </div>
  </div>
@@ -79,24 +76,24 @@
         <div *ngIf="selectedColor==='SOC'"> 
                 <mat-card>
                                 <div class="status-key" fxFlex>
-                                                <mat-expansion-panel *ngIf="filteredResources" fxLayoutWrap> 
-                                                                <mat-expansion-panel-header>key </mat-expansion-panel-header>
-                                                                <mat-panel-description>
-                                                                        <div fxLayoutAlign="center">
-                                                                        <ul type="none">
-                                                                                        <li class="ui-badge c0"><span class="status-num">0</span></li><li class=" ui-badge c1"><span class="status-num">5</span></li><li class="ui-badge c2"><span class="status-num">10</span></li><li class="ui-badge c3"><span class="status-num">15</span></li><li class="ui-badge c4"><span class="status-num">20</span></li>
-                                                                                        <li class="ui-badge c5"><span class="status-num">25</span></li><li class="ui-badge c6"><span class="status-num">30</span></li><li class="ui-badge c7"><span class="status-num">35</span></li><li class="ui-badge c8"><span class="status-num">40</span></li><li class="ui-badge c9"><span class="status-num">45</span></li>
-                                                                                        <li class="ui-badge c10"><span class="status-num">50</span></li><li class="ui-badge c11"><span class="status-num">55</span></li><li class="ui-badge c12"><span class="status-num">60</span></li><li class="ui-badge c13"><span class="status-num">65</span></li><li class="ui-badge c14"><span class="status-num">70</span></li>
-                                                                                        <li class="ui-badge c15"><span class="status-num">75</span></li><li class="ui-badge c16"><span class="status-num">80</span></li><li class="ui-badge c17"><span class="status-num">85</span></li><li class="ui-badge c18"><span class="status-num">90</span></li><li class="ui-badge c19"><span class="status-num">95</span></li>
-                                                                                        <li class="ui-badge c20"><span class="status-num">100</span></li>
-                                                                                </ul>
-                                                                        </div>
-                                                                                
-                                                                </mat-panel-description>
+                                <mat-expansion-panel *ngIf="filteredResources" fxLayoutWrap> 
+                                                <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                <mat-panel-description>
+                                                        <div fxLayoutAlign="center">
+                                                        <ul type="none">
+                                                                        <li class="ui-badge c0"><span class="status-num">-100</span></li><li class=" ui-badge c1"><span class="status-num">-90</span></li><li class="ui-badge c2"><span class="status-num">-80</span></li><li class="ui-badge c3"><span class="status-num">-70</span></li><li class="ui-badge c4"><span class="status-num">-60</span></li>
+                                                                        <li class="ui-badge c5"><span class="status-num">-50</span></li><li class="ui-badge c6"><span class="status-num">-40</span></li><li class="ui-badge c7"><span class="status-num">-30</span></li><li class="ui-badge c8"><span class="status-num">-20</span></li><li class="ui-badge c9"><span class="status-num">-10</span></li>
+                                                                        <li class="ui-badge c10"><span class="status-num">0</span></li><li class="ui-badge c11"><span class="status-num">10</span></li><li class="ui-badge c12"><span class="status-num">20</span></li><li class="ui-badge c13"><span class="status-num">30</span></li><li class="ui-badge c14"><span class="status-num">40</span></li>
+                                                                        <li class="ui-badge c15"><span class="status-num">50</span></li><li class="ui-badge c16"><span class="status-num">60</span></li><li class="ui-badge c17"><span class="status-num">70</span></li><li class="ui-badge c18"><span class="status-num">80</span></li><li class="ui-badge c19"><span class="status-num">90</span></li>
+                                                                        <li class="ui-badge c20"><span class="status-num">100</span></li>
+                                                                </ul>
+                                                        </div>
+                                                                
+                                                </mat-panel-description>
 
-                                                        </mat-expansion-panel>
-                                                
-                                        </div>
+                                        </mat-expansion-panel>
+                                
+                        </div>
                 <div class="ui-array-resources">
                                 <div  *ngFor="let resource of filteredResources;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
                                 [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
@@ -124,11 +121,11 @@
                                                                 <mat-panel-description>
                                                                         <div fxLayoutAlign="center">
                                                                         <ul type="none">
-                                                                                        <li class="ui-badge c0"></li><li class=" ui-badge c1"></li><li class="ui-badge c2"></li><li class="ui-badge c3"></li><li class="ui-badge c4"></li>
-                                                                                        <li class="ui-badge c5"></li><li class="ui-badge c6"></li><li class="ui-badge c7"></li><li class="ui-badge c8"></li><li class="ui-badge c9"></li>
-                                                                                        <li class="ui-badge c10"></li><li class="ui-badge c11"></li><li class="ui-badge c12"></li><li class="ui-badge c13"></li><li class="ui-badge c14"></li>
-                                                                                        <li class="ui-badge c15"></li><li class="ui-badge c16"></li><li class="ui-badge c17"></li><li class="ui-badge c18"></li><li class="ui-badge c19"></li>
-                                                                                        <li class="ui-badge c20"></li>
+                                                                                        <li class="ui-badge c0"><span class="status-num">0</span></li><li class=" ui-badge c1"><span class="status-num">5</span></li><li class="ui-badge c2"><span class="status-num">10</span></li><li class="ui-badge c3"><span class="status-num">15</span></li><li class="ui-badge c4"><span class="status-num">20</span></li>
+                                                                                        <li class="ui-badge c5"><span class="status-num">25</span></li><li class="ui-badge c6"><span class="status-num">30</span></li><li class="ui-badge c7"><span class="status-num">35</span></li><li class="ui-badge c8"><span class="status-num">40</span></li><li class="ui-badge c9"><span class="status-num">45</span></li>
+                                                                                        <li class="ui-badge c10"><span class="status-num">50</span></li><li class="ui-badge c11"><span class="status-num">55</span></li><li class="ui-badge c12"><span class="status-num">60</span></li><li class="ui-badge c13"><span class="status-num">65</span></li><li class="ui-badge c14"><span class="status-num">70</span></li>
+                                                                                        <li class="ui-badge c15"><span class="status-num">75</span></li><li class="ui-badge c16"><span class="status-num">80</span></li><li class="ui-badge c17"><span class="status-num">85</span></li><li class="ui-badge c18"><span class="status-num">90</span></li><li class="ui-badge c19"><span class="status-num">95</span></li>
+                                                                                        <li class="ui-badge c20"><span class="status-num">100</span></li>
                                                                                 </ul>
                                                                         </div>
                                                                                 
@@ -158,25 +155,17 @@
                 <div *ngIf="selectedView==='Array'">  
                        <div *ngIf="selectedColor==='Status'"> 
                                <mat-card>
-                                        <div class="status-key" fxFlex>
-                                                        <mat-expansion-panel *ngIf="filteredResources" fxLayoutWrap> 
-                                                                        <mat-expansion-panel-header>key </mat-expansion-panel-header>
-                                                                        <mat-panel-description>
-                                                                                <div fxLayoutAlign="center">
-                                                                                <ul type="none">
-                                                                                                <li class="ui-badge c0"></li><li class=" ui-badge c1"></li><li class="ui-badge c2"></li><li class="ui-badge c3"></li><li class="ui-badge c4"></li>
-                                                                                                <li class="ui-badge c5"></li><li class="ui-badge c6"></li><li class="ui-badge c7"></li><li class="ui-badge c8"></li><li class="ui-badge c9"></li>
-                                                                                                <li class="ui-badge c10"></li><li class="ui-badge c11"></li><li class="ui-badge c12"></li><li class="ui-badge c13"></li><li class="ui-badge c14"></li>
-                                                                                                <li class="ui-badge c15"></li><li class="ui-badge c16"></li><li class="ui-badge c17"></li><li class="ui-badge c18"></li><li class="ui-badge c19"></li>
-                                                                                                <li class="ui-badge c20"></li>
-                                                                                        </ul>
-                                                                                </div>
-                                                                                        
-                                                                        </mat-panel-description>
-        
-                                                                </mat-expansion-panel>
-                                                        
-                                                </div>
+                                        <div class="status-key" >
+                                                        <mat-expansion-panel *ngIf="filteredResources2" fxLayoutWrap> 
+                                                                <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                                <mat-panell-description>
+                                                                        <ul type="none">
+                                                                                <li class="ui-badge NC"><span class="status-num">NC</span></li><li class=" ui-badge GI"><span class="status-num">GI</span></li><li class="ui-badge SLP"><span class="status-num">SLP</span></li>
+                                                                                <li class="ui-badge IA"><span class="status-num">IA</span></li>
+                                                                        </ul>
+                                                                </mat-panell-description>
+                                                        </mat-expansion-panel>
+                                                        </div>
                                 <div class="ui-array-resources" >
                                                 <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)"    
                                                 [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
@@ -196,6 +185,25 @@
          <div *ngIf="selectedView==='Array'">
                 <div *ngIf="selectedColor==='Power'"> 
                         <mat-card>
+                        <div class="status-key" fxFlex>
+                        <mat-expansion-panel *ngIf="filteredResources2" fxLayoutWrap> 
+                                        <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                        <mat-panel-description>
+                                                <div fxLayoutAlign="center">
+                                                <ul type="none">
+                                                                <li class="ui-badge c0"><span class="status-num">-100</span></li><li class=" ui-badge c1"><span class="status-num">-90</span></li><li class="ui-badge c2"><span class="status-num">-80</span></li><li class="ui-badge c3"><span class="status-num">-70</span></li><li class="ui-badge c4"><span class="status-num">-60</span></li>
+                                                                <li class="ui-badge c5"><span class="status-num">-50</span></li><li class="ui-badge c6"><span class="status-num">-40</span></li><li class="ui-badge c7"><span class="status-num">-30</span></li><li class="ui-badge c8"><span class="status-num">-20</span></li><li class="ui-badge c9"><span class="status-num">-10</span></li>
+                                                                <li class="ui-badge c10"><span class="status-num">0</span></li><li class="ui-badge c11"><span class="status-num">10</span></li><li class="ui-badge c12"><span class="status-num">20</span></li><li class="ui-badge c13"><span class="status-num">30</span></li><li class="ui-badge c14"><span class="status-num">40</span></li>
+                                                                <li class="ui-badge c15"><span class="status-num">50</span></li><li class="ui-badge c16"><span class="status-num">60</span></li><li class="ui-badge c17"><span class="status-num">70</span></li><li class="ui-badge c18"><span class="status-num">80</span></li><li class="ui-badge c19"><span class="status-num">90</span></li>
+                                                                <li class="ui-badge c20"><span class="status-num">100</span></li>
+                                                        </ul>
+                                                </div>
+                                                        
+                                        </mat-panel-description>
+
+                                </mat-expansion-panel>
+                        
+                                </div>
                                 <div class="ui-array-resources">
                                                 <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
                                                 [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
@@ -218,6 +226,25 @@
                         <div *ngIf="selectedView==='Array'">
                 <div *ngIf="selectedColor==='SOC'"> 
                         <mat-card>
+                                        <div class="status-key" fxFlex>
+                                                        <mat-expansion-panel *ngIf="filteredResources2" fxLayoutWrap> 
+                                                                        <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                                        <mat-panel-description>
+                                                                                <div fxLayoutAlign="center">
+                                                                                <ul type="none">
+                                                                                                <li class="ui-badge c0"><span class="status-num">-100</span></li><li class=" ui-badge c1"><span class="status-num">-90</span></li><li class="ui-badge c2"><span class="status-num">-80</span></li><li class="ui-badge c3"><span class="status-num">-70</span></li><li class="ui-badge c4"><span class="status-num">-60</span></li>
+                                                                                                <li class="ui-badge c5"><span class="status-num">-50</span></li><li class="ui-badge c6"><span class="status-num">-40</span></li><li class="ui-badge c7"><span class="status-num">-30</span></li><li class="ui-badge c8"><span class="status-num">-20</span></li><li class="ui-badge c9"><span class="status-num">-10</span></li>
+                                                                                                <li class="ui-badge c10"><span class="status-num">0</span></li><li class="ui-badge c11"><span class="status-num">10</span></li><li class="ui-badge c12"><span class="status-num">20</span></li><li class="ui-badge c13"><span class="status-num">30</span></li><li class="ui-badge c14"><span class="status-num">40</span></li>
+                                                                                                <li class="ui-badge c15"><span class="status-num">50</span></li><li class="ui-badge c16"><span class="status-num">60</span></li><li class="ui-badge c17"><span class="status-num">70</span></li><li class="ui-badge c18"><span class="status-num">80</span></li><li class="ui-badge c19"><span class="status-num">90</span></li>
+                                                                                                <li class="ui-badge c20"><span class="status-num">100</span></li>
+                                                                                        </ul>
+                                                                                </div>
+                                                                                        
+                                                                        </mat-panel-description>
+        
+                                                                </mat-expansion-panel>
+                                                        
+                                                </div>
                         <div class="ui-array-resources">
                                         <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
                                         [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"
@@ -239,6 +266,25 @@
                         <div *ngIf="selectedView==='Array'">
                 <div *ngIf="selectedColor==='%SOC'"> 
                         <mat-card>
+                                        <div class="status-key" fxFlex>
+                                                        <mat-expansion-panel *ngIf="filteredResources2" fxLayoutWrap> 
+                                                                        <mat-expansion-panel-header>key </mat-expansion-panel-header>
+                                                                        <mat-panel-description>
+                                                                                <div fxLayoutAlign="center">
+                                                                                <ul type="none">
+                                                                                                <li class="ui-badge c0"><span class="status-num">0</span></li><li class=" ui-badge c1"><span class="status-num">5</span></li><li class="ui-badge c2"><span class="status-num">10</span></li><li class="ui-badge c3"><span class="status-num">15</span></li><li class="ui-badge c4"><span class="status-num">20</span></li>
+                                                                                                <li class="ui-badge c5"><span class="status-num">25</span></li><li class="ui-badge c6"><span class="status-num">30</span></li><li class="ui-badge c7"><span class="status-num">35</span></li><li class="ui-badge c8"><span class="status-num">40</span></li><li class="ui-badge c9"><span class="status-num">45</span></li>
+                                                                                                <li class="ui-badge c10"><span class="status-num">50</span></li><li class="ui-badge c11"><span class="status-num">55</span></li><li class="ui-badge c12"><span class="status-num">60</span></li><li class="ui-badge c13"><span class="status-num">65</span></li><li class="ui-badge c14"><span class="status-num">70</span></li>
+                                                                                                <li class="ui-badge c15"><span class="status-num">75</span></li><li class="ui-badge c16"><span class="status-num">80</span></li><li class="ui-badge c17"><span class="status-num">85</span></li><li class="ui-badge c18"><span class="status-num">90</span></li><li class="ui-badge c19"><span class="status-num">95</span></li>
+                                                                                                <li class="ui-badge c20"><span class="status-num">100</span></li>
+                                                                                        </ul>
+                                                                                </div>
+                                                                                        
+                                                                        </mat-panel-description>
+        
+                                                                </mat-expansion-panel>
+                                                        
+                                                </div>
                         <div class="ui-array-resources">
                                         <div  *ngFor="let resource of filteredResources2;" class="ui-array-resource" (click)="resourceDidClick(resource)" 
                                         [ngStyle]="{'width':width + 'px', 'height':height + 'px'}"

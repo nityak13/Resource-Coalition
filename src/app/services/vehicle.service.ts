@@ -1,3 +1,4 @@
+//Service used to connect to API for resource data
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';

@@ -21,7 +21,7 @@ export class DisplayComponent implements OnInit {
    selectedResource:IVehicle;
    width=10;
    height=10;
-   flagView;
+   flagKey;
    f1;
    f2;
 
@@ -32,14 +32,13 @@ export class DisplayComponent implements OnInit {
  
 
   constructor(private filterService:FilterService) {
-    //this.doResize(null, this.starterData);
+    
     this.filteredResources=[];
     this.filteredResources2=[];
    }
 
   ngOnInit() { 
-    // this.filteredResources=this.filterService.getFilteredData();
-    // this.filteredResources2=this.filterService.getFilteredData2();
+   
 
    }
    ngAfterViewInit(){
@@ -48,9 +47,11 @@ export class DisplayComponent implements OnInit {
    ngOnChanges(){
     this.filteredResources=this.filterService.getFilteredData();
     this.filteredResources2=this.filterService.getFilteredData2()
+
    }
+    
    ngDoCheck(){
-     
+    
     this.filteredResources=this.filterService.getFilteredData();
     this.filteredResources2=this.filterService.getFilteredData2();
     if(this.filteredResources){
@@ -59,8 +60,8 @@ export class DisplayComponent implements OnInit {
       this.height=40;
       }
       else if(this.filteredResources.length>1000) {
-        this.width=10;
-        this.height=10;
+        this.width=15;
+        this.height=15;
       }
       else {
         this.width=30;
@@ -73,8 +74,8 @@ export class DisplayComponent implements OnInit {
       this.height=40;
       }
       else if(this.filteredResources2.length>1000) {
-        this.width=10;
-        this.height=10;
+        this.width=15;
+        this.height=15;
       }
       else {
         this.width=30;

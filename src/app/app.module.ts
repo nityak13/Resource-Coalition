@@ -9,7 +9,7 @@ import 'hammerjs';
 import { VehicleService } from './services/vehicle.service';
 import { IsolistService } from './services/isoList.service';
 import { FilterService } from './services/filter.service';
-import { PropertySharingService } from './services/property-sharing.service';
+
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -83,7 +83,7 @@ import { ListComponent } from './home-screen/displaycomponent/list/list.componen
     
   ],
   exports: [],
-  providers: [ IsolistService, FilterService, VehicleService, PropertySharingService],
+  providers: [ IsolistService, FilterService, VehicleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
